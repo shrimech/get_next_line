@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "get_next_line.h"
+
 size_t	ft_strlen(const char *s)
 {
 	int	i;
@@ -151,12 +150,12 @@ char    *get_next_line(int fd)
     char        *line;
     char        *temp;
     ssize_t     bytes_read;
-    size_t      buffer_size = 5;
 
+	if (fd < 0 || buffer_size <= 0)
+		return (NULL);
     buf = malloc(buffer_size + 1);
     if (!buf)
         return (NULL);
-
     while ((bytes_read = read(fd, buf, buffer_size)) > 0)
     {
         buf[bytes_read] = '\0';
@@ -187,4 +186,11 @@ char    *get_next_line(int fd)
     }
     return (line);
 }
+int main()
+{
+	char *str;
+	int fd = open("salah.txt", O_RDONLY);
 
+	while ((str = get_next_line(fd)) != NULL)
+		printf("%s",str);
+}
