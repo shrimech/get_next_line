@@ -86,7 +86,7 @@ char	*get_next_line(int fd)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	temp = new_line(fd, buffer, temp);
+	temp = the_line(fd, buffer, temp);
 	free(buffer);
 	if (!temp)
 		return (NULL);
@@ -103,6 +103,8 @@ int main()
 	char *str;
 	int fd = open("salah.txt", O_RDONLY);
 
-	while ((str = get_next_line(fd)) != NULL)
+	while ((str = get_next_line(fd)) != NULL){
 		printf("%s",str);
+		free(str);
+	}
 }
