@@ -6,10 +6,9 @@
 /*   By: shrimech <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 09:50:20 by shrimech          #+#    #+#             */
-/*   Updated: 2024/11/27 09:50:22 by shrimech         ###   ########.fr       */
+/*   Updated: 2024/12/21 23:55:21 by shrimech         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "get_next_line.h"
 
@@ -46,14 +45,13 @@ static char	*extract_line(char *temp, int *start_next)
 			return (NULL);
 	}
 	line = ft_substr(temp, 0, *start_next);
-    return (line);
+	return (line);
 }
 
 static char	*the_line(int fd, char *buffer, char *temp)
 {
 	long		read_bytes;
 	char	*new_temp;
-
 	while (!ft_strchr(temp, '\n'))
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
